@@ -28,10 +28,9 @@ pico_sdk_init()
 
 
 # Add executable. Default name is the project name, version 0.1
-# Inclui todos os arquivos .c da pasta src
-file(GLOB SOURCES "src/*.c")
-# Inclui todos os arquivos .c da pasta src/lib
-file(GLOB LIB_SOURCES "src/lib/*.c")
+file(GLOB SOURCES "*.c")
+# Inclui todos os arquivos .c da pasta lib
+file(GLOB LIB_SOURCES "lib/*.c")
 # Combina todos os arquivos em um único executável
 add_executable(U4C6-interfaces ${SOURCES} ${LIB_SOURCES})
 
@@ -40,7 +39,7 @@ pico_enable_stdio_uart(U4C6-interfaces 1)  # Habilita UART
 pico_enable_stdio_usb(U4C6-interfaces 1)   # Habilita USB
 
 # gera o arquivo .pio.h
-pico_generate_pio_header(U4C6-interfaces ${CMAKE_CURRENT_LIST_DIR}/src/lib/ws2812.pio OUTPUT_DIR ${CMAKE_CURRENT_LIST_DIR}/src/lib)
+pico_generate_pio_header(U4C6-interfaces ${CMAKE_CURRENT_LIST_DIR}/lib/ws2812.pio OUTPUT_DIR ${CMAKE_CURRENT_LIST_DIR}/lib)
 target_link_libraries(U4C6-interfaces PRIVATE 
     pico_stdlib
     pico_time
